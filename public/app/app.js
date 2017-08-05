@@ -33,6 +33,17 @@
                 controllerAs: 'activities',
                 templateUrl: '/app/templates/allActivities.html' 
             })
+            .when('/classrooms/:id',{
+                controller: 'ClassroomController',
+                controllerAs: 'classroom',
+                templateUrl: '/app/templates/classroom.html' 
+            })
+            /*"?" на конце делает параметр опциональным*/
+            .when('/classrooms/:id/detail/:month?',{
+                controller: 'ClassroomController',
+                controllerAs: 'classroom',
+                templateUrl: '/app/templates/classroomDetail.html' 
+            })
             .otherwise('/');
 
     }]);
