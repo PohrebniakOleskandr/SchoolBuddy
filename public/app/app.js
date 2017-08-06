@@ -9,7 +9,14 @@
     function ($logProvider,$routeProvider,$locationProvider) {
 
         $logProvider.debugEnabled(true);
-        $locationProvider.hashPrefix('!');
+        //$locationProvider.hashPrefix('!');
+        $locationProvider.html5Mode(/*{
+            enabled: true,
+            requireBase: true,
+            rewriteLinks: true
+        }*/
+        true
+        );
 
         $routeProvider
             .when('/', {
