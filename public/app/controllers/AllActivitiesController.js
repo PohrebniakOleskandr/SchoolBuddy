@@ -1,13 +1,20 @@
 (function () {
 
     angular.module('app')
-        .controller('AllActivitiesController', ['dataService', 'notifier', '$location', AllActivitiesController]);
+        .controller('AllActivitiesController', 
+        ['dataService', 
+        'notifier', 
+        '$location', 
+        'activities',
+        AllActivitiesController]);
 
-    function AllActivitiesController(dataService, notifier,$location) {
+    function AllActivitiesController(dataService, notifier,$location,activities) {
 
         var vm = this;
 
         vm.selectedMonth = 1; // default to January
+
+        vm.allActivities = activities;
 
         vm.search = function () {
             var classroom_detail_url = '/classrooms/' + vm.selectedClassroom.id + '/detail/'+vm.selectedMonth;
