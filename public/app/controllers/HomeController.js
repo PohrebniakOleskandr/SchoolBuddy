@@ -1,23 +1,20 @@
 (function () {
 
     angular.module('app')
-        .controller('HomeController', ['dataService', 'notifier', '$route', '$log', HomeController]);
+        .controller('HomeController', ['dataService', 'notifier', '$state', '$log', HomeController]);
 
-    function HomeController(dataService, notifier,$route,$log) {
+    function HomeController(dataService, notifier, $state, $log) {
 
         var vm = this;
 
         vm.message = 'Welcome to School Buddy!';
 
-        vm.refresh = function(){
-            $log.log('$route.current = ');   
-            $log.log($route.current);
+        vm.refresh = function() {
 
-            $log.log('$route.routes = ');
-             $log.log($route.routes);
-            
-            $route.reload();    
-        }
+            $log.debug($state.current);
+            $state.reload();
+
+        };
 
         dataService.getAllSchools()
             .then(function(schools) {
