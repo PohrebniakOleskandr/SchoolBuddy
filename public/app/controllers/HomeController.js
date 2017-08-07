@@ -11,7 +11,7 @@
 
         vm.refresh = function() {
 
-            $log.debug($state.current);
+            $log.log($state.current);
             $state.reload();
 
         };

@@ -42,4 +42,32 @@
 
     }]);
 
+    //Инициализационный код для модуля
+    app.run(['$rootScope', '$log', function($rootScope,$log){
+        $rootScope.$on('$stateChangeSuccess', function (event,toState,toParams,fromState){
+            // $log.log('Successfully changed states');
+
+            // $log.log(event);
+            // $log.log(toState);
+            // $log.log(toParams);
+            // $log.log(fromState);
+            
+        });     
+
+        $rootScope.$on('$stateNotFound', function(event,unfoundState, fromState,fromParams){
+            $log.error('The requested state was not found: '+unfoundState);
+        });
+
+        $rootScope.$on('$stateChangeError', function(event,toState,toParams,fromState, error){
+            $log.log('An error occured while changing states');
+
+            $log.log(event);
+            $log.log(toState);
+            $log.log(toParams);
+            $log.log(fromState);
+            $log.log(error);
+            
+        });
+    }]);
+
 }()); 
