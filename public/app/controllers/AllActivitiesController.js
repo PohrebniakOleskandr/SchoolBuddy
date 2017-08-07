@@ -4,11 +4,11 @@
         .controller('AllActivitiesController', 
         ['dataService', 
         'notifier', 
-        '$location', 
+        '$state', 
         'activities',
         AllActivitiesController]);
 
-    function AllActivitiesController(dataService, notifier,$location,activities) {
+    function AllActivitiesController(dataService, notifier,$state,activities) {
 
         var vm = this;
 
@@ -17,8 +17,8 @@
         vm.allActivities = activities;
 
         vm.search = function () {
-            var classroom_detail_url = '/classrooms/' + vm.selectedClassroom.id + '/detail/'+vm.selectedMonth;
-            $location.url(classroom_detail_url);
+             //dconsole.log('search');
+             $state.go('classroom_detail', {id: vm.selectedClassroom.id, month:vm.selectedMonth});
         }
 
         dataService.getAllClassrooms()

@@ -37,7 +37,26 @@
                         return dataService.getAllActivities();
                     }
                 },
-            });
+            })
+            .state('classroom_summary', {
+                url: '/classrooms/:id',
+                templateUrl: 'app/templates/classroom.html',
+                controller: 'ClassroomController',
+                controllerAs: 'classroom'
+            })
+            .state('classroom_detail', {
+                //notice regular expr in id field
+                url: '/classrooms/{id:[0-9]}/detail/{month}',
+                templateUrl: 'app/templates/classroomDetail.html',
+                controller: 'ClassroomController',
+                controllerAs: 'classroom',
+                params: {
+                    classroomMessage: {value: 'Learning is fun'}
+                }
+            })
+
+            
+            ;
 
 
     }]);
