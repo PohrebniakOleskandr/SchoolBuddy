@@ -38,27 +38,33 @@
                     }
                 },
             })
-            .state('classroom_summary', {
+            .state('classroom_parent',{
+                abstract:true,
                 url: '/classrooms/:id',
-                templateUrl: 'app/templates/classroom.html',
-                controller: 'ClassroomController',
-                controllerAs: 'classroom'
-            })
-            .state('classroom_detail', {
-                //notice regular expr in id field
-                url: '/classrooms/{id:[0-9]}/detail/{month}',
-                templateUrl: 'app/templates/classroomDetail.html',
+                templateUrl: '/app/templates/classroom_parent.html',
                 controller: 'ClassroomController',
                 controllerAs: 'classroom',
                 params: {
                     classroomMessage: {value: 'Learning is fun'}
+                },
+                resolve: {
+                    classroom: function($stateParams, dataService) {
+                        return dataService.getClassroom($stateParams.id);
+                    }
                 }
             })
+            .state('classroom_parent.classroom_summary', {
+                url: '/summary',
+                templateUrl: 'app/templates/classroom.html',
+                controller: 'ClassroomSummaryController',
+                controllerAs: 'classroomSummary'
 
-            
-            ;
-
-
+            })
+            .state('classroom_parent.classroom_detail', {
+                //notice regular expr in id field
+                url: '/detail/{month}',
+                templateUrl: 'app/templates/classroomDetail.html'
+            });
     }]);
 
     //Инициализационный код для модуля

@@ -18,7 +18,7 @@
 
         vm.search = function () {
              //dconsole.log('search');
-             $state.go('classroom_detail', {id: vm.selectedClassroom.id, month:vm.selectedMonth});
+             $state.go('classroom_parent.classroom_detail', {id: vm.selectedClassroom.id, month:vm.selectedMonth});
         }
 
         dataService.getAllClassrooms()
